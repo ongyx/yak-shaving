@@ -1,0 +1,50 @@
+name: build-helix
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      updated: $[{ steps.check.outputs.updated }]
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+
+      - name: Update submodules
+        run: |
+          git submodule update --init --remote --recursive
+
+      - name: Check updated submodules
+        id: check
+        run: |
+          declare -a updated
+
+          while read -r line; do
+              sha="$(echo "$line" | cut -d' ' -f1)"
+              name="$(echo "$line" | cut -d' ' -f2)"
+              if [[ "$sha" == +* ]]; then
+                  updated+=("$name")
+              fi
+          done < <(git submodule status)
+
+          echo "updated=${updated[@]}" >> "$GITHUB_OUTPUT"
+
+      # https://stackoverflow.com/a/68213855
+      - name: Commit updated submodules
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add --all
+          git commit -m "Update submodules" || echo "No updates to submodules"
+          git push

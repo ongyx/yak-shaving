@@ -1,0 +1,9 @@
+[submodule "helix"]
+	path = submodules/helix
+	url = https://github.com/mattwparas/helix.git
+	branch = steel-event-system
+	ignore = dirty
+[submodule "steel"]
+	path = submodules/steel
+	url = https://github.com/mattwparas/steel.git
+	ignore = dirty
