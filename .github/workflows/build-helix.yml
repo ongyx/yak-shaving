@@ -6,6 +6,8 @@ defaults:
     shell: bash
 
 on:
+  workflow_dispatch:
+
   workflow_call:
     outputs:
       version:
@@ -52,7 +54,7 @@ jobs:
           path: submodules/helix/grammars.tar.xz
 
   build:
-    name: Build Helix (Steel fork)
+    name: Build
     needs: [fetch-grammars]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -70,6 +72,7 @@ jobs:
             target: aarch64-unknown-linux-gnu
     env:
       RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
+      BUILD_PROFILE: opt
     outputs:
       version: $[{ steps.build-deb.outputs.version }]
 
@@ -107,10 +110,9 @@ jobs:
       - name: Build ${{ matrix.arch }} binary
         working-directory: submodules/helix
         run: |
-          cargo build --locked --profile opt --target "${{ matrix.target }}"
-          # Binary is located at target/<target>/opt/hx, so it has to be moved to match the asset path defined by submodules/helix/helix-term/Cargo.toml.
+          cargo build --locked --profile "$BUILD_PROFILE" --target "${{ matrix.target }}"
           mkdir -p target/release
-          cp "target/${{ matrix.target }}/opt/hx" target/release/hx
+          cp "target/${{ matrix.target }}/$BUILD_PROFILE/hx" target/release/hx
 
       - name: Build ${{ matrix.arch }} deb
         id: build-deb
@@ -132,3 +134,11 @@ jobs:
         with:
           name: helix-${{ matrix.arch }}
           path: dist
+
+  cleanup:
+    name: Cleanup temporary artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: geekyeggo/delete-artifact@v6
+        with:
+          name: grammars

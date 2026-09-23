@@ -10,8 +10,6 @@ on:
 
   workflow_dispatch:
 
-  push:
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -72,53 +70,8 @@ jobs:
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || contains(needs.update-submodules.outputs.updated, 'submodules/helix') }}
     uses: ./.github/workflows/build-helix.yml
 
-  publish:
-    name: Publish packages
-    needs: [build-helix]
-    # At least one build must have been executed.
-    if: ${{ !cancelled() && (needs.build-helix.result == 'success') }}
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      id-token: write
-      attestations: write
-
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v7
-
-      - name: Download helix artifacts
-        uses: actions/download-artifact@v8
-        if: ${{ needs.build-helix.result == 'success' }}
-        with:
-          pattern: helix-*
-          path: helix
-          merge-multiple: true
-
-      - name: Build dist
-        run: |
-          mkdir dist
-          mv helix/*.deb dist
-
-      - name: Attest release artifacts
-        uses: actions/attest-build-provenance@v4
-        if: env.preview == 'false'
-        with:
-          subject-path: "dist/*"
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        if: env.preview == 'false'
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/*
-          file_glob: true
-          overwrite: true
-
-      - name: Upload binaries as artifact
-        uses: actions/upload-artifact@v7
-        if: env.preview == 'true'
-        with:
-          name: release
-          path: dist/*
+  build-steel:
+    name: Build Steel
+    needs: [update-submodules]
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || contains(needs.update-submodules.outputs.updated, 'submodules/steel') }}
+    uses: ./.github/workflows/build-steel.yml
