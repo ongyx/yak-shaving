@@ -137,6 +137,7 @@ jobs:
 
   cleanup:
     name: Cleanup temporary artifacts
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: geekyeggo/delete-artifact@v6
