@@ -1,0 +1,48 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: github.com/ongyx/yak-shaving
+Label: yak shaving
+Suite: stable
+Codename: stable
+Date: Fri, 30 Oct 2026 03:42:36 UTC
+Architectures: amd64 arm64
+Components: main
+Description: Personal APT repository hosting nightly builds of software I use.
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
+ 5d9d295c2025f7bdb9def01faeccb894 187 main/binary-amd64/Release
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-arm64/Packages.gz
+ 2eaea70668848849fefb1493c5b1509f 187 main/binary-arm64/Release
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
+ 38aac7952266fbd98e9e7d0393d8c568518fad85 187 main/binary-amd64/Release
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-arm64/Packages.gz
+ 16a23c05c6e48d622be0ef180e284c930f5d75f4 187 main/binary-arm64/Release
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
+ c50337e8fb932bf3d404679c88a7a5dc93fdf690b69c9a17a1ac67cb96f2d008 187 main/binary-amd64/Release
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-arm64/Packages.gz
+ 4f14e6632fb165fa96c31f4434531ac7b56ad573147c505512c5b7cc25f0d154 187 main/binary-arm64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEA1wQZQWJoYfdS9OHu2jsDfVEC7MFAmrkEiwACgkQu2jsDfVE
+C7NPtQ/7B5r1oCXk84Scvxsy4WYz9uZZFJI+ddsOMNDgYuH+LbzlxyuoEYzI4zoN
+SL0rN84wAvzQ4QTZGgkUfQ6Kx+m0dgPc8l6cuibkTU+q4YayNnygoAHr+BqcSAcJ
+fN6v8U1Aq39tHceDaq2BR+C1oE0PkFSkmzSAwi02G3AlNsgF/q43zg4GaH4CvT7K
+Y1oZYsilKZeEQXbe+aTLt6guy978BMzc2/5QvEdvKn1N4P0294U9pXackJGi57gQ
+WuqW4BznDS21XVgcPC6yOYl/aTt8C5xMsz6QYrhVJDFK3VRxxonKh5UxxgyfOfwy
+GsSqRiBnnfkCpDKkRYbWqDV92kCQeGaDpzk6czYd9gUpbZa8hugnxzilLkxYyALM
+ixN7k1r3CPd/gUWReiGgBlY48mmPxe8yBvGc5Jll76koCaPRAmddQEwaSCDpmWdH
+NH9xgKkh8f2UX6CV5NeBpXFJ2nPwbvgS34zF71owDl82cHvGZ6XyCds6FSAiR6D/
+HEv8CocAgytxtxwm5MXg8adxTwykP8TnzMKa3lGkFl+gMfsSWbBnbjR9+1nP60x/
+B57qMgdERiyBs9JArD+HJDYJevwofANfJI4aGG4omWSCOTWu5onJi9DVmTX0hSwx
+ESYHHrj94vR1hSt9rvvkGjYi6g+FwF1kwxpDAgnuMgfJHr12wO0=
+=vTU9
+-----END PGP SIGNATURE-----

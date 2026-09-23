@@ -1,0 +1,8 @@
+Codename: stable
+Suite: stable
+Architectures: amd64 arm64
+Components: main
+SignWith: F5440BB3
+Origin: github.com/ongyx/yak-shaving
+Label: yak shaving
+Description: Personal APT repository hosting nightly builds of software I use.
