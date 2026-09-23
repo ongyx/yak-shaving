@@ -10,8 +10,6 @@ on:
 
   workflow_dispatch:
 
-  push:
-
 concurrency:
   group: release
   cancel-in-progress: false
@@ -88,118 +86,8 @@ jobs:
     uses: ./.github/workflows/build-steel.yml
 
   publish:
-    name: Publish APT repository to Pages
+    name: Publish
     needs: [build-helix, build-steel]
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     # At least one package must've been built to update the apt repository.
     if: ${{ !cancelled() && (needs.build-helix.result == 'success' || needs.build-steel.result == 'success') }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download built packages
-        uses: actions/download-artifact@v8
-        with:
-          path: packages
-          merge-multiple: true
-
-      - name: Checkout APT repository
-        uses: actions/checkout@v7
-        with:
-          ref: apt-repo
-          path: apt-repo
-
-      - name: Install reprepro and GnuPG
-        run: |
-          sudo apt update
-          sudo apt install -y reprepro gnupg
-        env:
-          DEBIAN_FRONTEND: noninteractive
-
-      - name: Import GPG privkey
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
-        run: |
-          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
-
-      - name: Add packages
-        env:
-          GPG_KEY_ID: ${{ secrets.APT_GPG_KEY_ID }}
-        run: |
-          shopt -s nullglob
-
-          packages=(packages/*.deb)
-
-          if [ ${#packages[@]} -eq 0 ]; then
-            echo "No .deb files found in release."
-            exit 1
-          fi
-
-          for package in "${packages[@]}"; do
-            echo "Adding $package"
-
-            reprepro \
-              --basedir apt-repo \
-              --section utils \
-              includedeb stable "$package"
-          done
-
-      - name: Remove old package files
-        run: |
-          reprepro \
-            --basedir apt-repo \
-            deleteunreferenced
-
-      - name: Export GPG pubkey
-        run: |
-          gpg \
-            --armor \
-            --export "${{ secrets.APT_GPG_KEY_ID }}" \
-            > apt-repo/public.asc
-
-      - name: Add new files
-        working-directory: apt-repo
-        run: |
-          git add -A
-
-      - id: generate-commit-message
-        run: |
-          declare -a package_names
-
-          if [["${{ needs.build-helix.result }}" == 'success']]; then
-            package_names+=("helix ${{ needs.build-helix.outputs.version }}")
-          fi
-
-          if [["${{ needs.build-steel.result }}" == 'success']]; then
-            package_names+=("steel ${{ needs.build-steel.outputs.version }}")
-          fi
-
-          # https://stackoverflow.com/a/53839433
-          printf -v joined '%s, ' "${package_names[@]}"
-          echo "message=feat: ${joined%, }" >> "$GITHUB_OUTPUT"
-
-      - name: Commit APT repository
-        working-directory: apt-repo
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add -A
-          git commit -m "${{ steps.generate-commit-message.outputs.message }}" || echo "Nothing to commit"
-
-          git push
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v6
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: ./apt-repo
-
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+    uses: ./.github/workflows/publish.yml

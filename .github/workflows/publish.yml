@@ -1,0 +1,112 @@
+name: publish
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  workflow_call:
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish APT repository to Pages
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download built packages
+        uses: actions/download-artifact@v8
+        with:
+          path: packages
+          merge-multiple: true
+
+      - name: Checkout APT repository
+        uses: actions/checkout@v7
+        with:
+          ref: apt-repo
+          path: apt-repo
+
+      - name: Install reprepro and GnuPG
+        run: |
+          sudo apt update
+          sudo apt install -y reprepro gnupg
+        env:
+          DEBIAN_FRONTEND: noninteractive
+
+      - name: Import GPG privkey
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+
+      - name: Add packages
+        env:
+          GPG_KEY_ID: ${{ secrets.APT_GPG_KEY_ID }}
+        run: |
+          shopt -s nullglob
+
+          packages=(packages/*.deb)
+
+          if [ ${#packages[@]} -eq 0 ]; then
+            echo "No .deb files found in release."
+            exit 1
+          fi
+
+          for package in "${packages[@]}"; do
+            echo "Adding $package"
+
+            reprepro \
+              --basedir apt-repo \
+              --section utils \
+              includedeb stable "$package"
+          done
+
+      - name: Remove old package files
+        run: |
+          reprepro \
+            --basedir apt-repo \
+            deleteunreferenced
+
+      - name: Export GPG pubkey
+        run: |
+          gpg \
+            --armor \
+            --export "${{ secrets.APT_GPG_KEY_ID }}" \
+            > apt-repo/public.asc
+
+      - name: Add new files
+        working-directory: apt-repo
+        run: |
+          git add -A
+
+      - name: Commit APT repository
+        working-directory: apt-repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git commit -m "feat: Update packages" || echo "Nothing to commit"
+
+          git push
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./apt-repo
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,40 @@
+name: publish-noupdate
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  workflow_call:
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish APT repository to Pages without updating
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout APT repository
+        uses: actions/checkout@v7
+        with:
+          ref: apt-repo
+          path: apt-repo
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./apt-repo
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
