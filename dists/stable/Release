@@ -1,0 +1,29 @@
+Origin: github.com/ongyx/yak-shaving
+Label: yak shaving
+Suite: stable
+Codename: stable
+Date: Wed, 23 Sep 2026 17:17:16 UTC
+Architectures: amd64 arm64
+Components: main
+Description: Personal APT repository hosting nightly builds of software I use.
+MD5Sum:
+ f5635da8424a9b5a815663aae59af86c 10118 main/binary-amd64/Packages
+ 2a354467b0ecdb8f398ddaf819a77e17 4007 main/binary-amd64/Packages.gz
+ 5d9d295c2025f7bdb9def01faeccb894 187 main/binary-amd64/Release
+ ffd7a47f683f112b7350352eb640f8c4 10050 main/binary-arm64/Packages
+ 142b0d69d50630bbfca9a62c4e45ad40 3996 main/binary-arm64/Packages.gz
+ 2eaea70668848849fefb1493c5b1509f 187 main/binary-arm64/Release
+SHA1:
+ 13c432938db300968db23a79113f620f963e833b 10118 main/binary-amd64/Packages
+ 43b15c56231f606679c8660e6a766cc82979d180 4007 main/binary-amd64/Packages.gz
+ 38aac7952266fbd98e9e7d0393d8c568518fad85 187 main/binary-amd64/Release
+ d221e3e6de5d2a9bba282dbc16bbcdb2eb776ec9 10050 main/binary-arm64/Packages
+ 257619e2b932bb9d9b17302a9406e05ca28ee22c 3996 main/binary-arm64/Packages.gz
+ 16a23c05c6e48d622be0ef180e284c930f5d75f4 187 main/binary-arm64/Release
+SHA256:
+ 1474f5929f022dd6f0c32f3d13d73581d3508fa8e8dbae573a85881314726976 10118 main/binary-amd64/Packages
+ 9783a7f7889aafbe48f6f133ea645c1d656cee0b803a12348c16e3fa8e15a6e3 4007 main/binary-amd64/Packages.gz
+ c50337e8fb932bf3d404679c88a7a5dc93fdf690b69c9a17a1ac67cb96f2d008 187 main/binary-amd64/Release
+ 620d1072a945d8004e2b79ca3c503b6defcdb0bd723fefdff303a23828779920 10050 main/binary-arm64/Packages
+ 1909a1378fd42783253853e84e1741e93db5e570c8e9b9ca51e242808d714b94 3996 main/binary-arm64/Packages.gz
+ 4f14e6632fb165fa96c31f4434531ac7b56ad573147c505512c5b7cc25f0d154 187 main/binary-arm64/Release

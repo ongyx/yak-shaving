@@ -1,0 +1,6 @@
+Archive: stable
+Component: main
+Origin: github.com/ongyx/yak-shaving
+Label: yak shaving
+Architecture: arm64
+Description: Personal APT repository hosting nightly builds of software I use.
