@@ -1,0 +1,145 @@
+# Adapted from https://github.com/helix-editor/helix/blob/master/.github/workflows/release.yml
+name: build-helix
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  workflow_dispatch:
+
+  workflow_call:
+    outputs:
+      version:
+        description: "The package version."
+        value: ${{ jobs.build.outputs.version }}
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-grammars:
+    name: Fetch Grammars
+    runs-on: ubuntu-latest
+    env:
+      RUSTUP_TOOLCHAIN: stable
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+
+      - name: Install stable Rust toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: submodules/helix -> target
+
+      - name: Fetch grammars
+        working-directory: submodules/helix
+        run: |
+          cargo run --package=helix-loader --bin=hx-loader
+
+      - name: Bundle grammars
+        working-directory: submodules/helix
+        run: tar cJf grammars.tar.xz -C runtime/grammars/sources .
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: grammars
+          path: submodules/helix/grammars.tar.xz
+
+  build:
+    name: Build
+    needs: [fetch-grammars]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+        include:
+          - arch: amd64
+            rust: stable
+            os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - arch: arm64
+            rust: stable
+            os: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-gnu
+    env:
+      RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
+      BUILD_PROFILE: opt
+    outputs:
+      version: $[{ steps.build-deb.outputs.version }]
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+
+      - name: Download grammars
+        uses: actions/download-artifact@v8
+
+      - name: Install ${{ matrix.rust }} Rust toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          target: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: submodules/helix -> target
+
+      - name: Install cargo-deb
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deb
+
+      # Just in case RUSTUP_TOOLCHAIN isn't set, helix will still be compiled with the stable toolchain.
+      - name: Remove rust-toolchain.toml
+        working-directory: submodules/helix
+        run: |
+          rm rust-toolchain.toml
+
+      - name: Build ${{ matrix.arch }} binary
+        working-directory: submodules/helix
+        run: |
+          cargo build --locked --profile "$BUILD_PROFILE" --target "${{ matrix.target }}"
+          mkdir -p target/release
+          cp "target/${{ matrix.target }}/$BUILD_PROFILE/hx" target/release/hx
+
+      - name: Build ${{ matrix.arch }} deb
+        id: build-deb
+        working-directory: submodules/helix
+        run: |
+          version="$(../../version.sh .)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+          cargo deb \
+            --no-build \
+            --maintainer "${{ vars.maintainer }}" \
+            --deb-version "$version"
+
+          mkdir ../../dist
+          mv target/debian/*.deb ../../dist
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v7
+        with:
+          name: helix-${{ matrix.arch }}
+          path: dist
+
+  cleanup:
+    name: Cleanup temporary artifacts
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: geekyeggo/delete-artifact@v6
+        with:
+          name: grammars

@@ -1,0 +1,106 @@
+name: build-steel
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  workflow_dispatch:
+
+  workflow_call:
+    outputs:
+      version:
+        description: "The package version."
+        value: ${{ jobs.build.outputs.version }}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+        include:
+          - arch: amd64
+            rust: stable
+            os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - arch: arm64
+            rust: stable
+            os: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-gnu
+    env:
+      RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
+      CARGO_PROFILE_RELEASE_DEBUG: line-tables-only
+      BUILD_PROFILE: release
+      PACKAGES: steel-interpreter steel-language-server cargo-steel-lib steel-forge
+    outputs:
+      version: $[{ steps.build-deb.outputs.version }]
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+
+      - name: Install ${{ matrix.rust }} Rust toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          target: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: submodules/steel -> target
+
+      - name: Install cargo-deb
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deb
+
+      - name: Build ${{ matrix.arch }} binaries
+        working-directory: submodules/steel
+        run: |
+          mkdir -p target/release
+
+          for package in $PACKAGES; do
+            echo "Building $package..."
+
+            cargo build \
+              --locked \
+              --profile "$BUILD_PROFILE" \
+              --target "${{ matrix.target }}" \
+              --package "$package"
+          done
+
+          # Copy all binaries from target/<target>/release/ to target/release/.
+          find "target/${{ matrix.target }}/release" -maxdepth 1 -type f ! -name "*.*" -exec cp {} target/release/ \;
+
+      - name: Build ${{ matrix.arch }} debs
+        id: build-deb
+        working-directory: submodules/steel
+        run: |
+          version="$(../../version.sh .)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+          for package in $PACKAGES; do 
+            cargo deb \
+              --no-build \
+              --package "$package" \
+              --maintainer "${{ vars.maintainer }}" \
+              --deb-version "$version"
+          done
+
+          mkdir ../../dist
+          mv target/debian/*.deb ../../dist
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v7
+        with:
+          name: steel-${{ matrix.arch }}
+          path: dist
