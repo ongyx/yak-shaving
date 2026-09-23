@@ -85,7 +85,7 @@ jobs:
         id: build-deb
         working-directory: submodules/steel
         run: |
-          version="$(../../version.sh .)"
+          version="$(../../scripts/version.sh .)"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
           for package in $PACKAGES; do 

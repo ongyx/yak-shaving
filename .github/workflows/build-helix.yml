@@ -118,7 +118,7 @@ jobs:
         id: build-deb
         working-directory: submodules/helix
         run: |
-          version="$(../../version.sh .)"
+          version="$(../../scripts/version.sh .)"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
           cargo deb \
