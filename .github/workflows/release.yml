@@ -88,6 +88,10 @@ jobs:
   publish:
     name: Publish
     needs: [build-helix, build-steel]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     # At least one package must've been built to update the apt repository.
     if: ${{ !cancelled() && (needs.build-helix.result == 'success' || needs.build-steel.result == 'success') }}
     uses: ./.github/workflows/publish.yml
