@@ -72,6 +72,8 @@ jobs:
             target: aarch64-unknown-linux-gnu
     env:
       RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
+      BUILD_PROFILE: opt
+      FEATURES: "git,steel"
     outputs:
       version: $[{ steps.build-deb.outputs.version }]
 
@@ -106,13 +108,19 @@ jobs:
         run: |
           rm rust-toolchain.toml
 
+      - name: Patch sources
+        run: |
+          for patch in patches/helix/*.patch; do
+            git apply "$patch"
+          done
+
       - name: Build ${{ matrix.arch }} binary
         working-directory: submodules/helix
         run: |
           cargo build \
             --locked \
-            --profile opt \
-            --features git,steel
+            --profile "$BUILD_PROFILE" \
+            --features "$FEATURES" \
             --target "${{ matrix.target }}"
           mkdir -p target/release
           cp "target/${{ matrix.target }}/$BUILD_PROFILE/hx" target/release/hx

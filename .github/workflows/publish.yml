@@ -43,6 +43,11 @@ jobs:
         env:
           GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
         run: |
+          if [ -z "$GPG_PRIVATE_KEY" ]; then
+            echo "::error::GPG_PRIVATE_KEY is undefined"
+            exit 1
+          fi
+
           printf '%s\n' "$GPG_PRIVATE_KEY" | gpg --batch --import
 
       - name: Add packages
@@ -51,15 +56,20 @@ jobs:
         run: |
           shopt -s nullglob
 
+          if [ -z "$GPG_KEY_ID" ]; then
+            echo "::error::GPG_KEY_ID is undefined"
+            exit 1
+          fi
+
           packages=(packages/*.deb)
 
           if [ ${#packages[@]} -eq 0 ]; then
-            echo "No .deb files found in release."
+            echo "actions: No .deb files found in release."
             exit 1
           fi
 
           for package in "${packages[@]}"; do
-            echo "Adding $package"
+            echo "actions: Adding $package"
 
             reprepro \
               --basedir apt-repo \

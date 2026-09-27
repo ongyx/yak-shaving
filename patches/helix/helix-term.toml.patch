@@ -1,0 +1,21 @@
+diff --git a/submodules/helix/helix-term/Cargo.toml b/submodules/helix/helix-term/Cargo.toml
+index bb4f114d..f55834db 100644
+--- a/submodules/helix/helix-term/Cargo.toml
++++ b/submodules/helix/helix-term/Cargo.toml
+@@ -1,6 +1,6 @@
+ [package]
+ name = "helix-term"
+-description = "A post-modern text editor."
++description = "Steel-enabled fork of the post-modern text editor."
+ include = ["src/**/*", "README.md"]
+ default-run = "hx"
+ version.workspace = true
+@@ -14,7 +14,7 @@ homepage.workspace = true
+ 
+ [package.metadata.deb]
+ # generate a .deb in target/debian/ with the command: cargo deb --no-build
+-name = "helix"
++name = "helix-steel"
+ assets = [
+   { source = "target/release/hx", dest = "/usr/lib/helix/", mode = "755" },
+   { source = "../contrib/hx_launcher.sh", dest = "/usr/bin/hx", mode = "755" },

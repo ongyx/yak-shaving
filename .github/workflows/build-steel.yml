@@ -69,7 +69,7 @@ jobs:
           mkdir -p target/release
 
           for package in $PACKAGES; do
-            echo "Building $package..."
+            echo "actions: Building $package..."
 
             cargo build \
               --locked \
