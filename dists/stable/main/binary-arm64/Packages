@@ -14,22 +14,6 @@ SHA1: 79ee76e13580601187d7fbaadaa6e887f36a7076
 MD5sum: 38a4aac3d1a0f98a7d32cd001f68ec05
 Description: Cargo plugin to build dylib for steel
 
-Package: helix
-Version: 25.7.1~git20260921.7915ec1
-Architecture: arm64
-Homepage: https://helix-editor.com
-Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
-Installed-Size: 281904
-Depends: libc6 (>= 2.17), libc6 (>= 2.34), libstdc++6 (>= 5), libstdc++6 (>= 5.2)
-Priority: optional
-Section: utils
-Filename: pool/main/h/helix/helix_25.7.1~git20260921.7915ec1_arm64.deb
-Size: 20073904
-SHA256: 6181b689452f0b4aded3940c77e11aee28a78cf70fb6a5d39d23726463388346
-SHA1: ad8eda8722b20641e7b40dfea0aef4d70f9041f9
-MD5sum: c5e920371f7aaab42eb5befe2c629555
-Description: A post-modern text editor.
-
 Package: helix-steel
 Version: 25.7.1~git20260926.df595c7
 Architecture: arm64

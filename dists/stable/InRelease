@@ -5,44 +5,44 @@ Origin: github.com/ongyx/yak-shaving
 Label: yak shaving
 Suite: stable
 Codename: stable
-Date: Sun, 27 Sep 2026 11:35:58 UTC
+Date: Sun, 27 Sep 2026 13:57:59 UTC
 Architectures: amd64 arm64
 Components: main
 Description: Personal APT repository hosting nightly builds of software I use.
 MD5Sum:
- 7628d5cad221fe1199ec12446cf041d7 10799 main/binary-amd64/Packages
- 30b8da8d405815e42fa9c27ccfe31c85 4138 main/binary-amd64/Packages.gz
+ 5b1bb870627e011f37e47855e8bcf129 10139 main/binary-amd64/Packages
+ 8bedb4d19164b24bd4931e9654f07ab8 3999 main/binary-amd64/Packages.gz
  5d9d295c2025f7bdb9def01faeccb894 187 main/binary-amd64/Release
- d5807201e37d95511f06bf61c72448ac 10663 main/binary-arm64/Packages
- 7345f98692151e5b8f821a256e40b69d 4133 main/binary-arm64/Packages.gz
+ da3cac814b4092b7942cb28e016f3443 10071 main/binary-arm64/Packages
+ b74cef0df65187704d717d250bc12dc1 3997 main/binary-arm64/Packages.gz
  2eaea70668848849fefb1493c5b1509f 187 main/binary-arm64/Release
 SHA1:
- 02bc9b509b72c8f24d817c3ec59348e91480713b 10799 main/binary-amd64/Packages
- b43f8564ee80f4e8d114f113b9200f3a79e0d2a2 4138 main/binary-amd64/Packages.gz
+ 998fa0767045a00a9c74133b078d0fe16483b516 10139 main/binary-amd64/Packages
+ e572c0399d0fdf2c4f3c9ebe49a3eaa72704a4fc 3999 main/binary-amd64/Packages.gz
  38aac7952266fbd98e9e7d0393d8c568518fad85 187 main/binary-amd64/Release
- 7d2675b9c504beb7fd1fdc98d500c112eb9148fe 10663 main/binary-arm64/Packages
- 6a2bcdd2161896dd4d6c81fc9554a54cdad592aa 4133 main/binary-arm64/Packages.gz
+ f466e626e598a0b200baf78266ab68a0ab24e37c 10071 main/binary-arm64/Packages
+ 2d79810ed4bbe955386d961fd9f02a3dd5e7fc30 3997 main/binary-arm64/Packages.gz
  16a23c05c6e48d622be0ef180e284c930f5d75f4 187 main/binary-arm64/Release
 SHA256:
- 5d1a6b98fddea2ae95c475b37f850947f4740da5fb5210a16f9f2a8f27273c2f 10799 main/binary-amd64/Packages
- 999b3938140b163db638d13b74e879c56a369327328adbb645d833ff8e878a17 4138 main/binary-amd64/Packages.gz
+ f7cfe93a12cb20ea1270d8a2f8604cad610e4367c5e9119450ee7112ca7b12d6 10139 main/binary-amd64/Packages
+ 0fc097719e883c9e023d9821224bc42ded4d110520897cb64fdaa120ae79e4d7 3999 main/binary-amd64/Packages.gz
  c50337e8fb932bf3d404679c88a7a5dc93fdf690b69c9a17a1ac67cb96f2d008 187 main/binary-amd64/Release
- fbed17b987cc162e7e470a9d5b662fd2a7821b6a74705f95b0430c6a5ae5579a 10663 main/binary-arm64/Packages
- 894c9478499dc843e6b53e2c58a251cb890d0177d860aa9da0eeba4d284cea37 4133 main/binary-arm64/Packages.gz
+ f13f25a60d2ab11b481e90dcffde5d29e5e93b3b73c66df68ea4dbc25106a522 10071 main/binary-arm64/Packages
+ 22cb3d43c51826ea6932c149ad5edf137a640086d50609cefc4d228b6adf8e45 3997 main/binary-arm64/Packages.gz
  4f14e6632fb165fa96c31f4434531ac7b56ad573147c505512c5b7cc25f0d154 187 main/binary-arm64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEA1wQZQWJoYfdS9OHu2jsDfVEC7MFAmq4/54ACgkQu2jsDfVE
-C7NJQA//ac/7L0T1zC+5N5KEEyN3qZQbu82RnTdD/phCK9jPHPxpGa40o5JrBc9s
-LcBt2k7mRlq7tu/f59Kpy+iYHYZ4Uck+UyP4Vm67+AADlue/IerV/3wvitx/1fOU
-Qz1EPqOZLEMSssmWc/21sct56LhaFQ3ijeB5ErRnTcd+kN5CPKfSi1Pob/XIauDT
-5YE4HPKwBbhHYO6Sdec5aDf5ibZFPccXI4LOTlVRCgy/Itzf5m1YKEbrrpgX7xuz
-+GJud13eume3s18KXtN9oH6paEFHLVuuMy8QQlRzb5GecfLnTBDZV3gflrvvujGs
-RTu+gz/TMOClJv4yp2PuKDHjts/S8bTmJqmQPMDNjVtFy6Yhw0x80woGhtVbilPC
-aI96KDNWilCjsG2pIB6xh+aaBYCUVl/0sUxgcT/A5IS+eMoj6x/As1+tDym3XeBp
-GvrC6VbcRLUK+/pPEooD5xk76vHsSMwryNfS8iOGNGCZooYS9TnboD9AO/9m9v1h
-fjHFiULLvre88t+pFAE+MxWJLRsnRGECVUoaHkHGegmBTNopIMHyNkbNKXBftCJa
-OflV6wyctMrigsmxZxUNGzO1DHT6SUzuDtIwPAQec4PPx38S8ibKxmaN11falY9K
-LEyLeQ6/x2fYRvqgt0KYLgzSl46Zx/ygSwgMA1d8/neAMDOQW3U=
-=tBHU
+iQIzBAEBCgAdFiEEA1wQZQWJoYfdS9OHu2jsDfVEC7MFAmq5IOcACgkQu2jsDfVE
+C7M6MxAAzicM2HscLcRM5wDJ+Qs2Y12CnpSNQy+62BGbaOqCwMIZFKX/jHTTYj6f
+HnHGK1/YESUPIlUxbCSFOBf2tyy8DyZX/U3/228TxsCm6HDAK6J+oc91ia6BYlsK
+EtBnRmdqzS0Jzb9HfD62WT22L8nrHtyCcp/FHurtc1OexOZsch81MyDjeNpsI9iH
+fkJ4W57c77EuMbPkMfb9dR8MKo/qjPf+BfNkI6F89/nO3EPP4z8MF6FGImUgdIOH
+yYLduCGgWiqucoP+UGBzMuTkencamxKQmMJbLfSZMM/HNQbl0+U08mrOApuvnL+S
+6oYJxVFdwf3Fr1Rkb0NQyMR5OOHO17psz4//86Xv3hEavdmrqrCnXfXPSrJJozyG
+UgR+5/sNCcJ8GF1z1UQRsd/CMlxa9bOdrLWUPiDMNaGrylPNtUKHdZLk9HR+7poP
+9pWZVJU1UG4ia142vMI5wLMeAXRzGp+hUkbb8bi1ov2OyD+u/Ukedak9KPkDZN+3
+XBYmgTgWe8ZaGr18y5kMqmhJAYxkh6Wov4F92qq0lA5IQjoLhXKtAcxk13nEnMaA
+WzKBXT6hAdnZjJfpHC3iIqSqtDbwuPMsefJR/6/XH7HhGojkmPSC/eYX8spflOPr
+fDaGvXw5lzCzTrkkTBQZH7rt9lE6cnxs9DOOLqcgtGunr+4KXCQ=
+=8Pg2
 -----END PGP SIGNATURE-----
