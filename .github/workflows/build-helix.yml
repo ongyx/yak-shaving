@@ -72,7 +72,6 @@ jobs:
             target: aarch64-unknown-linux-gnu
     env:
       RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
-      BUILD_PROFILE: opt
     outputs:
       version: $[{ steps.build-deb.outputs.version }]
 
@@ -110,7 +109,11 @@ jobs:
       - name: Build ${{ matrix.arch }} binary
         working-directory: submodules/helix
         run: |
-          cargo build --locked --profile "$BUILD_PROFILE" --target "${{ matrix.target }}"
+          cargo build \
+            --locked \
+            --profile opt \
+            --features git,steel
+            --target "${{ matrix.target }}"
           mkdir -p target/release
           cp "target/${{ matrix.target }}/$BUILD_PROFILE/hx" target/release/hx
 
