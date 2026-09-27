@@ -1,5 +1,5 @@
 Package: cargo-steel-lib
-Version: 0.8.3~git20260918.2ef0a02
+Version: 0.8.3~git20260923.c8570a3
 Architecture: arm64
 Homepage: https://github.com/mattwparas/steel
 Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
@@ -7,11 +7,11 @@ Installed-Size: 4626
 Depends: libc6 (>= 2.34)
 Priority: optional
 Section: utils
-Filename: pool/main/c/cargo-steel-lib/cargo-steel-lib_0.8.3~git20260918.2ef0a02_arm64.deb
-Size: 839696
-SHA256: 3a9bd7cef9991b049beff96b7fbf037765ef3c8f54a7ede9407f2d0da9f1561f
-SHA1: 262c0015df3aa7c60ad7a9881b08e5a56aa7c21b
-MD5sum: 099339ba3ce88efcaad4b6238da30c40
+Filename: pool/main/c/cargo-steel-lib/cargo-steel-lib_0.8.3~git20260923.c8570a3_arm64.deb
+Size: 839720
+SHA256: fe458b714427fabb55dcf5655c2dcba14c815c618c03057a77754338654c4bd7
+SHA1: 79ee76e13580601187d7fbaadaa6e887f36a7076
+MD5sum: 38a4aac3d1a0f98a7d32cd001f68ec05
 Description: Cargo plugin to build dylib for steel
 
 Package: helix
@@ -30,24 +30,40 @@ SHA1: ad8eda8722b20641e7b40dfea0aef4d70f9041f9
 MD5sum: c5e920371f7aaab42eb5befe2c629555
 Description: A post-modern text editor.
 
+Package: helix-steel
+Version: 25.7.1~git20260926.df595c7
+Architecture: arm64
+Homepage: https://helix-editor.com
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 281904
+Depends: libc6 (>= 2.17), libc6 (>= 2.34), libstdc++6 (>= 5), libstdc++6 (>= 5.2)
+Priority: optional
+Section: utils
+Filename: pool/main/h/helix-steel/helix-steel_25.7.1~git20260926.df595c7_arm64.deb
+Size: 20071264
+SHA256: 0d0ecf7710ed7bcb057aabfc00a10f61c632cc3100dcfe481e63f6c63cf737f0
+SHA1: 6a23d6283f8008d7bc2c66d08975d600b316fa29
+MD5sum: 7d43739968f2263a0b188d72164401f8
+Description: Steel-enabled fork of the post-modern text editor.
+
 Package: steel-forge
-Version: 0.8.3~git20260918.2ef0a02
+Version: 0.8.3~git20260923.c8570a3
 Architecture: arm64
 Homepage: https://github.com/mattwparas/steel
 Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
-Installed-Size: 107283
-Depends: libc6 (>= 2.34), zlib1g (>= 1:1.1.4)
+Installed-Size: 109833
+Depends: libc6 (>= 2.34)
 Priority: optional
 Section: utils
-Filename: pool/main/s/steel-forge/steel-forge_0.8.3~git20260918.2ef0a02_arm64.deb
-Size: 19828752
-SHA256: 2234b817020760e25349d5722a6a79180d15bd20e36dbe6a3c9a4d62405e6b23
-SHA1: 93b47d286918bd126e5bf330b6e7a5e0db00d858
-MD5sum: 670c4deb053aaff8bfc745e0b00dba78
+Filename: pool/main/s/steel-forge/steel-forge_0.8.3~git20260923.c8570a3_arm64.deb
+Size: 18045832
+SHA256: c05e5cbcf2c1bd1c494673b374e480b422d1bab12899e93ad92f4a8422105a29
+SHA1: 0c33ebc7ba0cf681072fbe8a35a9591309121efc
+MD5sum: 5bb6fa4e9a77615c5d79841bf8f66572
 Description: Package manager for steel
 
 Package: steel-interpreter
-Version: 0.8.3~git20260918.2ef0a02
+Version: 0.8.3~git20260923.c8570a3
 Architecture: arm64
 Homepage: https://github.com/mattwparas/steel
 Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
@@ -55,11 +71,11 @@ Installed-Size: 78521
 Depends: libc6 (>= 2.34)
 Priority: optional
 Section: utils
-Filename: pool/main/s/steel-interpreter/steel-interpreter_0.8.3~git20260918.2ef0a02_arm64.deb
-Size: 11888412
-SHA256: 9fd20a91457a08cb5d0b3daa7faab12ca5a541728f5737cf533a3a4183a49cf7
-SHA1: a2ff7081199f9b072db02a324b21ffac98996ca8
-MD5sum: c73e1d26283e018aa833d69c7314a8f9
+Filename: pool/main/s/steel-interpreter/steel-interpreter_0.8.3~git20260923.c8570a3_arm64.deb
+Size: 11892596
+SHA256: b07914f0eb605301c0e2670d9b806ecd8fd5b136a940b4eb81b056acd45f8477
+SHA1: 7f79fc7dbed25bd6681d07dbddaff087db16929f
+MD5sum: d9479aa92665f0faa0e2ec40f124a015
 Description: Steel repl and command line interface
  # Steel
  .
@@ -198,19 +214,19 @@ Description: Steel repl and command line interface
  See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 Package: steel-language-server
-Version: 0.8.3~git20260918.2ef0a02
+Version: 0.8.3~git20260923.c8570a3
 Architecture: arm64
 Homepage: https://github.com/mattwparas/steel
 Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
-Installed-Size: 59991
+Installed-Size: 59985
 Depends: libc6 (>= 2.34)
 Priority: optional
 Section: utils
-Filename: pool/main/s/steel-language-server/steel-language-server_0.8.3~git20260918.2ef0a02_arm64.deb
-Size: 9220852
-SHA256: d24ba04fe0af9a6064e6b41194a20ef3532e3462d7fdf849a17c75a99d5532ad
-SHA1: b3d80fd7f34d22e42b2ab6e5f0eeb60b5223da81
-MD5sum: 4cd14569ce05ef3a5376387cca78163c
+Filename: pool/main/s/steel-language-server/steel-language-server_0.8.3~git20260923.c8570a3_arm64.deb
+Size: 9219140
+SHA256: 7ac403e298e45e1360aa4988c3a0e790798c3667494814c777712f9b0bf9a2c6
+SHA1: b51e4bc525874f280df35daeff6457a7e128bf37
+MD5sum: e4c438d2259347784d4bb19fb37ce7ef
 Description: Steel language server
  # Steel language server
  .
