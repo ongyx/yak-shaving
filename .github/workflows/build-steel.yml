@@ -63,6 +63,12 @@ jobs:
         with:
           tool: cargo-deb
 
+      - name: Patch sources
+        run: |
+          for patch in patches/steel/*.patch; do
+            git apply "$patch"
+          done
+
       - name: Build ${{ matrix.arch }} binaries
         working-directory: submodules/steel
         run: |

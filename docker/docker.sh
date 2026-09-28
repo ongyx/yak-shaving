@@ -24,7 +24,7 @@ docker_run() {
   docker run \
     --interactive \
     --pull never \
-    --volume "${DIR}/submodules:/workdir/submodules" \
+    --volume "${DIR}/../submodules:/workdir/submodules" \
     --volume "${DIR}/cache/target:/workdir/target" \
     --volume "${DIR}/cache/registry:/usr/local/cargo/registry" \
     --volume "${DIR}/output:/workdir/output" \
