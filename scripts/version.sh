@@ -17,11 +17,12 @@ main() {
         exit 1
     fi
 
-    version=$(grep "^version = " "$submodule_path/Cargo.toml" | awk -F '"' 'NF>2 {print $2}')
+    date="$(date -u +%Y%m%d)"
+    version="$(grep "^version = " "$submodule_path/Cargo.toml" | awk -F '"' 'NF>2 {print $2}')"
     # https://unix.stackexchange.com/a/640241
-    date_commit=$(cd "$submodule_path" && git log -1 --date=format:%Y%m%d --pretty=%cd.%h)
+    commit=$(cd "$submodule_path" && git log -n1 --format="%h")
 
-    printf "%s~git%s" "$version" "$date_commit"
+    printf "%s~git%s.%s" "$version" "$date" "$commit"
 }
 
 main "$@"
