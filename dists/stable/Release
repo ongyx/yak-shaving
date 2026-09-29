@@ -2,28 +2,28 @@ Origin: github.com/ongyx/yak-shaving
 Label: yak shaving
 Suite: stable
 Codename: stable
-Date: Mon, 28 Sep 2026 09:40:30 UTC
+Date: Tue, 29 Sep 2026 06:06:07 UTC
 Architectures: amd64 arm64
 Components: main
 Description: Personal APT repository hosting nightly builds of software I use.
 MD5Sum:
- 1cd6e57f2ad3c0db5e8af9c95df5fad0 10138 main/binary-amd64/Packages
- 312b9e7427bb28175255e25fbc9ca85c 4000 main/binary-amd64/Packages.gz
+ 207d569177ec2e7be6e426d7506c213f 10917 main/binary-amd64/Packages
+ 47fbe423b5abcfd7c1deca54e7086925 4165 main/binary-amd64/Packages.gz
  5d9d295c2025f7bdb9def01faeccb894 187 main/binary-amd64/Release
- 53be0843063e64d6da71c208bddc5bbc 10070 main/binary-arm64/Packages
- fdb9d494d0af10a4fdb5f3ca9f5a3c77 3989 main/binary-arm64/Packages.gz
+ 07c0c3c3c69d21ab32c886fa5bc96b79 10781 main/binary-arm64/Packages
+ 1941a09c151736567e807981bf92b3d7 4156 main/binary-arm64/Packages.gz
  2eaea70668848849fefb1493c5b1509f 187 main/binary-arm64/Release
 SHA1:
- ed97899cc6581504668f18948f061dd70dd39972 10138 main/binary-amd64/Packages
- 35ecd37814d9a6ce29c8c3936ca5ab9e0729601a 4000 main/binary-amd64/Packages.gz
+ 2eea573b1860c676a214fae9ae92954cd6ebc050 10917 main/binary-amd64/Packages
+ c71a10f6ff7fccaf13dcdc27875c78e2e254e8a1 4165 main/binary-amd64/Packages.gz
  38aac7952266fbd98e9e7d0393d8c568518fad85 187 main/binary-amd64/Release
- 3c08f50955d6f05fac12db41045ec79137ecfc04 10070 main/binary-arm64/Packages
- a9429a655cb0ed9afd3a7514214e6d98823db217 3989 main/binary-arm64/Packages.gz
+ 1daacc98bab6e35e5232c377dc761fed8492bcad 10781 main/binary-arm64/Packages
+ ccd93d75bc30a37660aa86fa59cd8da804137b01 4156 main/binary-arm64/Packages.gz
  16a23c05c6e48d622be0ef180e284c930f5d75f4 187 main/binary-arm64/Release
 SHA256:
- 84d58a5f1b457d27f507c1c06e534de15166b244c182519a05f485984c9cba28 10138 main/binary-amd64/Packages
- ef821c15ab734d1a751cb8b95bd25cc5840d80252766663523b8a5235b3dca57 4000 main/binary-amd64/Packages.gz
+ 11fc1c881827b855d467f4950624c52b02bee41f679b8a30ba12ab36a52a78eb 10917 main/binary-amd64/Packages
+ 35dfd7a378822b695bd00aa09706463ae13fd8b6e0b9fdc9a7ab37c757a87ddb 4165 main/binary-amd64/Packages.gz
  c50337e8fb932bf3d404679c88a7a5dc93fdf690b69c9a17a1ac67cb96f2d008 187 main/binary-amd64/Release
- a0de074567367f678f63cac74e024f83eb4149b639617b33469dcceb9906c2f6 10070 main/binary-arm64/Packages
- 1bcd66013932ed9b1aaa50ad06a69ebe9691c295d36986debb55dc0e54fbaab2 3989 main/binary-arm64/Packages.gz
+ 39e8f98fdfefe75b6d17b92d49b8260346cbef954522c1da3f50a11acb29c1c1 10781 main/binary-arm64/Packages
+ 8db26ed460835f82aa74c73e8faa99473ac3a1bfbbdeaa594c2568ad3520641a 4156 main/binary-arm64/Packages.gz
  4f14e6632fb165fa96c31f4434531ac7b56ad573147c505512c5b7cc25f0d154 187 main/binary-arm64/Release
