@@ -73,7 +73,6 @@ jobs:
     env:
       RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
       BUILD_PROFILE: opt
-      FEATURES: "git,steel"
     outputs:
       version: $[{ steps.build-deb.outputs.version }]
 
@@ -110,7 +109,7 @@ jobs:
 
       - name: Patch sources
         run: |
-          for patch in patches/helix/*.patch; do
+          for patch in patches/*.patch; do
             git apply "$patch"
           done
 
@@ -120,7 +119,6 @@ jobs:
           cargo build \
             --locked \
             --profile "$BUILD_PROFILE" \
-            --features "$FEATURES" \
             --target "${{ matrix.target }}"
           mkdir -p target/release
           cp "target/${{ matrix.target }}/$BUILD_PROFILE/hx" target/release/hx

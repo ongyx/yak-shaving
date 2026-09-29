@@ -65,7 +65,7 @@ jobs:
 
       - name: Patch sources
         run: |
-          for patch in patches/steel/*.patch; do
+          for patch in patches/*.patch; do
             git apply "$patch"
           done
 
