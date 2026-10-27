@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      updated: $[{ steps.check.outputs.updated }]
+      updated: ${{ steps.check.outputs.updated }}
 
     steps:
       - name: Checkout sources
@@ -50,7 +50,7 @@ jobs:
               fi
           done < <(git submodule status)
 
-          echo "updated=${updated[@]}" >> "$GITHUB_OUTPUT"
+          echo "updated=$(jq -nc '$ARGS.positional' --args "${updated[@]}")" >> "$GITHUB_OUTPUT"
 
       - name: Commit updated submodules
         run: |
@@ -63,26 +63,18 @@ jobs:
 
           git push
 
-      - name: Commit updated submodules
-        uses: planetscale/ghcommit-action@v0.2.22
-        if: ${{ steps.check.outputs.updated != '' }}
-        with:
-          commit_message: "chore: Update submodules"
-          repo: ${{ github.repository }}
-          branch: ${{ github.head_ref || github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   build-helix:
     name: Build Helix (Steel fork)
     needs: [update-submodules]
-    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || contains(needs.update-submodules.outputs.updated, 'submodules/helix') }}
+    # if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/helix') }}
     uses: ./.github/workflows/build-helix.yml
 
   build-steel:
     name: Build Steel
     needs: [update-submodules]
-    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || contains(needs.update-submodules.outputs.updated, 'submodules/steel') }}
+    # if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/steel') }}
     uses: ./.github/workflows/build-steel.yml
 
   publish:
