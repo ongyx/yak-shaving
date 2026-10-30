@@ -30,10 +30,10 @@ install or newer the packages should work.
 
 ```sh
 sudo apt install wget gpg &&
-wget -qO- https://ongyx.github.io/yak-shaving/public.asc | sudo gpg --dearmor -o /usr/share/keyrings/ongyx.gpg
+wget -qO- https://ongyx.github.io/yak-shaving/public.asc | sudo gpg --dearmor -o /usr/share/keyrings/yak-shaving.gpg
 ```
 
-2. Create a new sources file at `/etc/apt/sources.list.d/ongyx.sources`:
+2. Create a new sources file at `/etc/apt/sources.list.d/yak-shaving.sources`:
 
 ```
 Types: deb
@@ -41,7 +41,7 @@ URIs: https://ongyx.github.io/yak-shaving
 Suites: stable
 Components: main
 Architectures: amd64,arm64
-Signed-By: /usr/share/keyrings/ongyx.gpg
+Signed-By: /usr/share/keyrings/yak-shaving.gpg
 ```
 
 3. Update your package cache:
