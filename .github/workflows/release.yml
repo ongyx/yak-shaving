@@ -66,15 +66,15 @@ jobs:
   build-helix:
     name: Build Helix (Steel fork)
     needs: [update-submodules]
-    # if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
-    if: ${{ contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/helix') }}
+    # if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/helix') }}
     uses: ./.github/workflows/build-helix.yml
 
   build-steel:
     name: Build Steel
     needs: [update-submodules]
-    # if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
-    if: ${{ contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/steel') }}
+    # if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(fromJSON(needs.update-submodules.outputs.updated), 'submodules/steel') }}
     uses: ./.github/workflows/build-steel.yml
 
   publish:

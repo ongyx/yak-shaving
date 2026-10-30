@@ -1,0 +1,12 @@
+diff --git a/submodules/steel/Cargo.toml b/submodules/steel/Cargo.toml
+index cde84fdf..13e51978 100644
+--- a/submodules/steel/Cargo.toml
++++ b/submodules/steel/Cargo.toml
+@@ -26,7 +26,6 @@ steel-core = { path = "./crates/steel-core", version = "0.8.3", features = [
+     "sync",
+     "rooted-instructions",
+     "imbl",
+-    "jit2",
+     "biased"
+ ] }
+ 
