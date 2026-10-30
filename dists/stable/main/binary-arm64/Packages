@@ -1,0 +1,332 @@
+Package: cargo-steel-lib
+Version: 0.8.3~git20261030.498eacf
+Architecture: arm64
+Homepage: https://github.com/mattwparas/steel
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 4519
+Depends: libc6 (>= 2.34)
+Priority: optional
+Section: utils
+Filename: pool/main/c/cargo-steel-lib/cargo-steel-lib_0.8.3~git20261030.498eacf_arm64.deb
+Size: 822716
+SHA256: cf1e8e25a0e4460e1978f2f7d34e96d293cd669960cf1a05f3b249249875ba36
+SHA1: fa6ff908f630f109ca8025cf91fc948e46fc21c0
+MD5sum: f336773494321f9322799ed4c4485746
+Description: Cargo plugin to build dylib for steel
+
+Package: helix-steel
+Version: 25.7.1~git20261030.424add1
+Architecture: arm64
+Homepage: https://helix-editor.com
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 281868
+Depends: libc6 (>= 2.17), libc6 (>= 2.34), libstdc++6 (>= 5), libstdc++6 (>= 5.2)
+Suggests: steel-forge, steel-interpreter, steel-language-server
+Conflicts: hx
+Provides: editor
+Priority: optional
+Section: utils
+Filename: pool/main/h/helix-steel/helix-steel_25.7.1~git20261030.424add1_arm64.deb
+Size: 20045336
+SHA256: 4594ec732942d3cd8e23c8ee19ffc21ba2be35d50e540c7aab23994d818c72ad
+SHA1: 8191c9144386bb58fc90c74e0c92a3b2bea89276
+MD5sum: 4b7c2979b564d98d2ed108cef3e68afa
+Description: Steel-enabled fork of the post-modern text editor.
+
+Package: steel-forge
+Version: 0.8.3~git20261030.498eacf
+Architecture: arm64
+Homepage: https://github.com/mattwparas/steel
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 94827
+Depends: libc6 (>= 2.34)
+Priority: optional
+Section: utils
+Filename: pool/main/s/steel-forge/steel-forge_0.8.3~git20261030.498eacf_arm64.deb
+Size: 15929156
+SHA256: f654fe6e80dc497a96632b598fb5f88037ef03e40fd0befeb150d8429208f079
+SHA1: e6f823c0cac610c9455054b5b8c4d682b2a82e7f
+MD5sum: f27ea887d3a0e2e6b8acc9bd6ac8ac54
+Description: Package manager for steel
+
+Package: steel-interpreter
+Version: 0.8.3~git20261030.498eacf
+Architecture: arm64
+Homepage: https://github.com/mattwparas/steel
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 63090
+Depends: libc6 (>= 2.34)
+Priority: optional
+Section: utils
+Filename: pool/main/s/steel-interpreter/steel-interpreter_0.8.3~git20261030.498eacf_arm64.deb
+Size: 9605768
+SHA256: 48da8d2c50dced5b98062869d0a231cd3b5faaa0ed45ee02dcecf87b0f51aed8
+SHA1: ecb93746f8bd17390d8baeebb43959d725f645fc
+MD5sum: a4767c2a029197fc1b4636264c0ed939
+Description: Steel repl and command line interface
+ # Steel
+ .
+ <div align="center">
+     <img width="150px" src="images/styled.png">
+ </div>
+ .
+ <div align="center">
+ .
+ An embeddable and extensible scheme dialect built in Rust.
+ .
+ ![Actions
+ Status](https://github.com/mattwparas/steel/workflows/Build/badge.svg)
+ ![Actions
+ Status](https://github.com/mattwparas/steel/workflows/Docker%20CI/badge.svg)
+ [![Coverage
+ Status](https://coveralls.io/repos/github/mattwparas/steel/badge.svg?branch=master)](https://coveralls.io/github/mattwparas/steel?branch=master)
+ [![Discord
+ Chat](https://img.shields.io/discord/1152443024715034675.svg?logo=discord&label=discord)](https://discord.gg/WwFRXdN6HU)
+ [![Matrix
+ Chat](https://img.shields.io/matrix/steel:matrix.org?logo=element&label=matrix)](https://matrix.to/#/#steel:matrix.org)
+ .
+ <a href="https://mattwparas.github.io/steel-playground/">
+     <b>Try it on the Playground</b>
+ </a>
+ ·
+ <a href="https://mattwparas.github.io/steel/book">
+     <b>Read the Steel book (WIP)</b>
+ </a>
+ .
+ </div>
+ .
+ ## About
+ .
+ `Steel` is an embeddable scheme interpreter, with a standalone interpreter/REPL
+ included as well. The language is implemented as a bytecode virtual machine. At
+ the moment, it is mostly compliant with R5RS, only missing `let-syntax`
+ support.
+ Support for R7Rs is underway.
+ .
+ > **Warning**
+ > The API is relatively stable, however it may change at any time while pre
+ 1.0.
+ > Care will be taken to keep things backwards compatible where possible.
+ .
+ .
+ ## Features
+ .
+ - [R5RS](https://standards.scheme.org/official/r5rs.pdf) support
+ - Modules, using `require` and `provide` much like Racket.
+ - `syntax-rules` and `syntax-case` macros.
+ - Easy integration with native Rust functions and structs, either through
+   embedding or via FFI.
+ - Higher order Contracts
+ - Built in immutable data structures, including:
+   - lists
+   - vectors
+   - hashmaps
+   - hashsets
+ .
+ For more details, see the [book](https://mattwparas.github.io/steel/book).
+ .
+ ## Getting Started
+ .
+ This github repository contains a CLI interpreter. To try it out on the online
+ playground, go to the [Steel
+ playground](https://mattwparas.github.io/steel-playground/).
+ To get started using a REPL with the crates, make sure you first have Rust
+ installed.
+ .
+ Then, clone the repo and run the following command:
+ .
+ ```bash
+ cargo run
+ ```
+ .
+ This will launch a REPL instance that looks something like this:
+ .
+ <p align="center">
+   <img src="images/steel.gif" width="100%">
+ </p>
+ .
+ ### Full install
+ .
+ If you'd like to install everything, just run the following command:
+ .
+ ```bash
+ cargo xtask install
+ ```
+ .
+ This will install:
+ .
+ - The steel interpreter, `steel`
+ - The package manager, `forge`
+ - The dylib installer, `cargo-steel-lib` (also available via the interpreter)
+ - The steel language server
+ - The standard library, found under the `cogs` directory
+ .
+ #### Nix
+ .
+ Steel can also be installed with Nix. Add the following to your Home Manager
+ config:
+ .
+ ```nix
+ home.packages = [
+   pkgs.steel
+ ];
+ ```
+ .
+ ### Packages
+ .
+ If you would like to customize the location of installed packages, please set
+ the `STEEL_HOME` environment variable. Steel currently follows XDG if present,
+ and otherwise assumes the default of `$HOME/.steel` if the `STEEL_HOME`
+ environment variable is not already set.
+ .
+ ## License
+ .
+ Licensed under either of
+ .
+ - Apache License, Version 2.0
+   ([LICENSE-APACHE](LICENSE-APACHE) or
+ http://www.apache.org/licenses/LICENSE-2.0)
+ - MIT license
+   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+ .
+ at your option.
+ .
+ ## Contribution
+ .
+ Unless you explicitly state otherwise, any contribution intentionally submitted
+ for inclusion in the work by you, as defined in the Apache-2.0 license, shall
+ be
+ dual licensed as above, without any additional terms or conditions.
+ .
+ See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+Package: steel-language-server
+Version: 0.8.3~git20261030.498eacf
+Architecture: arm64
+Homepage: https://github.com/mattwparas/steel
+Maintainer: Ong Yong Xin <ongyongxin2020+github@gmail.com>
+Installed-Size: 60397
+Depends: libc6 (>= 2.34)
+Priority: optional
+Section: utils
+Filename: pool/main/s/steel-language-server/steel-language-server_0.8.3~git20261030.498eacf_arm64.deb
+Size: 9277520
+SHA256: 2ccf0b6325a264f3c16782c56231f15af93b1c6f851dd7ac023b2b17bd2c9540
+SHA1: 5986b6cb30ce6e31f70e7e63d263fb3c2d1007b0
+MD5sum: 4826e090517aa8f2d6cfbb6b708556fc
+Description: Steel language server
+ # Steel language server
+ .
+ ## Installation
+ .
+ From the directory of this crate, run:
+ .
+ ```
+ cargo install --path .
+ ```
+ .
+ This will install the `steel-language-server` to your path.
+ .
+ Configuration in helix can be done by adding the following to your
+ `languages.toml` file:
+ .
+ ```toml
+ [[language]]
+ name = "scheme"
+ language-servers = [ "steel-language-server" ]
+ .
+ [language-server.steel-language-server]
+ command = "steel-language-server"
+ args = []
+ ```
+ .
+ Configuration in neovim can be done by adding the following to your
+ configuration
+ .
+ ```lua
+ configs.steel = {
+     default_config = {
+         cmd = { "steel-language-server" },
+         filetypes = { "scheme" },
+         root_dir = function(_)
+             -- We can run on single file, so root dir doesn't really matter.
+             require("lspconfig.util").root_pattern "*"
+         end,
+         single_file_support = true,
+         docs = {
+             description = [[
+ Steel language server.
+ .
+ Install from:
+ https://github.com/mattwparas/steel/tree/master/crates/steel-language-server
+ .
+ Check the repo for more configuration.
+ ]],
+             default_config = {}
+         }
+     }
+ }
+ ```
+ .
+ Now you can call
+ .
+ ```lua
+ require'lspconfig'.steel.setup {
+   -- Your usual configuration (handlers, capabilities, etc.) goes here.
+ }
+ ```
+ .
+ VSCode, and emacs installation instructions coming soon.
+ .
+ ## Configuration
+ .
+ If you're embedding steel within a host application, it is possible the
+ language server does not have knowledge
+ of the globals given by the host application. To make these available to the
+ language server, create a configuration file
+ for the language server under the path specified by the env var
+ `STEEL_LSP_HOME`.
+ .
+ For example, I have set my `STEEL_LSP_HOME` to `~/.config/steel-lsp/` and added
+ the file `globals.scm`:
+ .
+ ```scheme
+ .
+ (define keymaps (#%module "helix/core/keymaps"))
+ .
+ (define (register-values module values)
+   (map (lambda (ident) (#%module-add module (symbol->string ident) void))
+ values))
+ .
+ (register-values keymaps
+                  '(helix-current-keymap *buffer-or-extension-keybindings*
+                                         *reverse-buffer-map*
+                                         helix-merge-keybindings
+                                         helix-string->keymap
+                                         *global-keybinding-map*
+                                         helix-deep-copy-keymap))
+ .
+ (define typable-commands (#%module "helix/core/typable"))
+ (define static-commands (#%module "helix/core/static"))
+ (define editor (#%module "helix/core/editor"))
+ .
+ (register-values typable-commands '())
+ .
+ (#%ignore-unused-identifier "_")
+ .
+ keymaps
+ .
+ ```
+ .
+ The following rules apply: Any global value that is defined as a builtin
+ module, will be interpreted by the LSP and used, or evaluated as a top level
+ env var. So either defining `keymaps` or evaluating like so on the last line of
+ the example will get the module to show up.
+ .
+ Any symbol added with `#%ignore-unused-identifier` will escape that symbol from
+ being shown as an unused identifier.
+ .
+ Any global registered with `#%register-global` will be ignored as a free
+ identifier as well.
+ .
+
